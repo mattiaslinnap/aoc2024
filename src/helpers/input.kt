@@ -2,6 +2,8 @@ package helpers
 
 import kotlin.io.path.Path
 import kotlin.io.path.forEachLine
+import kotlin.io.path.readLines
+import kotlin.io.path.readText
 
 
 fun readIntegerMatrix(filePath: String): List<List<Int>> {
@@ -14,4 +16,12 @@ fun readIntegerMatrix(filePath: String): List<List<Int>> {
         }
     }
     return result
+}
+
+fun readLines(filePath: String): List<String> {
+    return Path("src/$filePath").readLines()
+}
+
+fun readText(filePath: String): String {
+    return Path("src/$filePath").readText()
 }
