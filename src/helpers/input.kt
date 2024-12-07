@@ -18,8 +18,31 @@ fun readIntegerMatrix(filePath: String): List<List<Int>> {
     return result
 }
 
-fun readLines(filePath: String): List<String> {
+fun readNonEmptyLines(filePath: String): List<String> {
     return Path("src/$filePath").readLines().map { it.trim() }.filter { it.isNotEmpty() }
+}
+
+/**
+ * Read lines, split into groups by empty lines.
+ *
+ * Empty lines in the start and end of the file are ignored. Multiple empty lines are treated as one.
+ */
+fun readLineGroupsSeparatedByBlankLine(filePath: String): List<List<String>> {
+    val groups = mutableListOf<MutableList<String>>()
+    var newGroup = true
+    Path("src/$filePath").forEachLine { line ->
+        val trimmed = line.trim()
+        if (trimmed.isEmpty()) {
+            newGroup = true
+        } else {
+            if (newGroup) {
+                groups.add(mutableListOf())
+                newGroup = false
+            }
+            groups.last().add(trimmed)
+        }
+    }
+    return groups
 }
 
 fun readText(filePath: String): String {

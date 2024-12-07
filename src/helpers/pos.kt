@@ -35,6 +35,13 @@ val PosDirections4 = arrayOf(PosN, PosE, PosS, PosW)
 val PosDirections4Diagonal = arrayOf(PosNE, PosSE, PosSW, PosNW)
 val PosDirections8 = arrayOf(PosN, PosNE, PosE, PosSE, PosS, PosSW, PosW, PosNW)
 
+enum class PosDirection4(val dir: Pos) {
+    N(PosN),
+    E(PosE),
+    S(PosS),
+    W(PosW),
+}
+
 // Generates all Positions (0, 0) ... (x - 1, y - 1). y is the outer loop
 fun Pos.allCoordinatesLessThan(): Sequence<Pos> {
     return sequence {

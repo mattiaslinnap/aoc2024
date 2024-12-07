@@ -82,7 +82,7 @@ fun main() {
     println(gold("$DAY/input.txt"))
 }
 
-class Day3Test {
+class Day4Test {
     @Test
     fun testExampleSilver() {
         assertEquals(18, silver("$DAY/example1.txt"))
