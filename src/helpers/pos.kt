@@ -12,11 +12,13 @@ operator fun Pos.minus(other: Pos): Pos { return Pos(x - other.x, y - other.y) }
 //    x -= other.x;
 //    y -= other.y;
 //}
+operator fun Pos.times(scale: Int): Pos { return Pos(x * scale, y * scale) }
 
 fun Pos.nonNegative(): Boolean = x >= 0 && y >= 0
 fun Pos.positive(): Boolean = x > 0 && y >= 0
 fun Pos.less(other: Pos): Boolean = x < other.x && y < other.y
 fun Pos.lessOrEqual(other: Pos): Boolean = x <= other.x && y < other.y
+fun Pos.inSize(size: Pos): Boolean = nonNegative() && less(size)
 
 // 0,0 at top left
 // X is ->

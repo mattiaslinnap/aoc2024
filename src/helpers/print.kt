@@ -1,9 +1,14 @@
 package helpers
 
-fun <T> printTable(data: List<List<T>>) {
+fun <T> printTable(data: List<T>) {
     if (data.isNotEmpty()) {
         data.forEach { row ->
-            println(row.joinToString("\t"))
+            val printable = when (row) {
+                is String -> row
+                is List<*> -> row.joinToString("")
+                else -> "$row"
+            }
+            println(printable)
         }
     } else {
         println("No table data.")
