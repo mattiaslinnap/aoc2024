@@ -2,8 +2,14 @@ package helpers
 
 data class Pos(val x: Int, val y: Int)
 
-operator fun Pos.plus(other: Pos): Pos { return Pos(x + other.x, y + other.y) }
-operator fun Pos.minus(other: Pos): Pos { return Pos(x - other.x, y - other.y) }
+operator fun Pos.plus(other: Pos): Pos {
+    return Pos(x + other.x, y + other.y)
+}
+
+operator fun Pos.minus(other: Pos): Pos {
+    return Pos(x - other.x, y - other.y)
+}
+
 //operator fun Pos.plusAssign(other: Pos): Unit {
 //    x += other.x;
 //    y += other.y;
@@ -12,13 +18,20 @@ operator fun Pos.minus(other: Pos): Pos { return Pos(x - other.x, y - other.y) }
 //    x -= other.x;
 //    y -= other.y;
 //}
-operator fun Pos.times(scale: Int): Pos { return Pos(x * scale, y * scale) }
+operator fun Pos.times(scale: Int): Pos {
+    return Pos(x * scale, y * scale)
+}
 
 fun Pos.nonNegative(): Boolean = x >= 0 && y >= 0
 fun Pos.positive(): Boolean = x > 0 && y >= 0
 fun Pos.less(other: Pos): Boolean = x < other.x && y < other.y
 fun Pos.lessOrEqual(other: Pos): Boolean = x <= other.x && y < other.y
 fun Pos.inSize(size: Pos): Boolean = nonNegative() && less(size)
+
+fun Pos.wrappedInSize(size: Pos): Pos {
+    require(size.positive())
+    return Pos(x.mod(size.x), y.mod(size.y))
+}
 
 // 0,0 at top left
 // X is ->
@@ -47,8 +60,8 @@ enum class PosDirection4(val dir: Pos) {
 // Generates all Positions (0, 0) ... (x - 1, y - 1). y is the outer loop
 fun Pos.allCoordinatesLessThan(): Sequence<Pos> {
     return sequence {
-        for (sy in 0..< y) {
-            for (sx in 0 ..< x) {
+        for (sy in 0..<y) {
+            for (sx in 0..<x) {
                 yield(Pos(sx, sy))
             }
         }

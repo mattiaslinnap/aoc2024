@@ -1,13 +1,12 @@
 package day01
 
-import helpers.readIntegerMatrix
-
+import helpers.readIntegerMatrixWithSpaces
 import helpers.transposeJagged
 import kotlin.math.abs
 
 
 fun main() {
-    val input = transposeJagged(readIntegerMatrix("day01/input1.txt"))
+    val input = transposeJagged(readIntegerMatrixWithSpaces("day01/input1.txt"))
     val sorted = input.map { it.sorted() }
 
     var diff = 0

@@ -1,7 +1,6 @@
 package day02
 
-import helpers.printTable
-import helpers.readIntegerMatrix
+import helpers.readIntegerMatrixWithSpaces
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import kotlin.math.absoluteValue
@@ -23,12 +22,12 @@ fun isSafe(xs: List<Int>): Boolean {
 }
 
 fun silver(fname: String): Int {
-    val input = readIntegerMatrix(fname)
+    val input = readIntegerMatrixWithSpaces(fname)
     return input.count { isSafe(it) }
 }
 
 fun gold(fname: String): Int {
-    val input = readIntegerMatrix(fname)
+    val input = readIntegerMatrixWithSpaces(fname)
     var safe = 0
     input.forEach { row ->
         val safeOriginal = isSafe(row)
@@ -69,8 +68,8 @@ class Day2Test {
 
     @Test
     fun testRemoveNth() {
-        assertEquals(listOf(2,3), removeNth(listOf(1,2,3), 0))
-        assertEquals(listOf(1,3), removeNth(listOf(1,2,3), 1))
-        assertEquals(listOf(1,2), removeNth(listOf(1,2,3), 2))
+        assertEquals(listOf(2, 3), removeNth(listOf(1, 2, 3), 0))
+        assertEquals(listOf(1, 3), removeNth(listOf(1, 2, 3), 1))
+        assertEquals(listOf(1, 2), removeNth(listOf(1, 2, 3), 2))
     }
 }

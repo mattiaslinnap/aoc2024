@@ -5,10 +5,20 @@ fun <T> printTable(data: List<T>) {
         data.forEach { row ->
             val printable = when (row) {
                 is String -> row
-                is List<*> -> row.joinToString("")
+                is List<*> -> row.map { it.toString() }.joinToString("")
                 else -> "$row"
             }
             println(printable)
+        }
+    } else {
+        println("No table data.")
+    }
+}
+
+fun printTableNonZero(data: List<List<Int>>) {
+    if (data.isNotEmpty()) {
+        data.forEach { row ->
+            println(row.joinToString("") { if (it > 0) it.toString() else "." })
         }
     } else {
         println("No table data.")
